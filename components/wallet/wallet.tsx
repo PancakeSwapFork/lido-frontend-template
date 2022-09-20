@@ -10,7 +10,6 @@ import {
   useSDK,
   useSTETHBalance,
   useTokenAddress,
-  useWSTETHBalance,
 } from '@lido-sdk/react';
 import { useWeb3 } from '@lido-sdk/web3-react';
 import FormatToken from 'components/formatToken';
@@ -18,15 +17,18 @@ import FallbackWallet from 'components/fallbackWallet';
 import TokenToWallet from 'components/tokenToWallet';
 import { WalletComponent } from './types';
 import { TOKENS } from '@lido-sdk/constants';
+import styled from 'styled-components';
+
+const AprPercent = styled.span`
+  color: rgb(97, 183, 95);
+`;
 
 const Wallet: WalletComponent = (props) => {
   const { account } = useSDK();
   const eth = useEthereumBalance();
   const steth = useSTETHBalance();
-  const wsteth = useWSTETHBalance();
 
   const stethAddress = useTokenAddress(TOKENS.STETH);
-  const wstethAddress = useTokenAddress(TOKENS.WSTETH);
 
   return (
     <WalletCard {...props}>
@@ -42,7 +44,7 @@ const Wallet: WalletComponent = (props) => {
       <WalletCardRow>
         <WalletCardBalance
           small
-          title="Token balance"
+          title="Staked amount"
           loading={steth.initialLoading}
           value={
             <>
@@ -53,14 +55,8 @@ const Wallet: WalletComponent = (props) => {
         />
         <WalletCardBalance
           small
-          title="Token balance"
-          loading={wsteth.initialLoading}
-          value={
-            <>
-              <FormatToken amount={wsteth.data} symbol="wstETH" />
-              <TokenToWallet address={wstethAddress} />
-            </>
-          }
+          title="Lido APR"
+          value={<AprPercent>120.8%</AprPercent>}
         />
       </WalletCardRow>
     </WalletCard>

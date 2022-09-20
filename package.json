@@ -30,6 +30,7 @@
     "@lido-sdk/web3-react": "^1.26.2",
     "@lidofinance/lido-ui": "^2.16.2",
     "@lidofinance/lido-ui-blocks": "^2.8.1",
+    "@web3-react/core": "^6.1.9",
     "cookie": "^0.4.2",
     "copy-to-clipboard": "^3.3.1",
     "ethers": "^5.4.2",
@@ -72,7 +73,6 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "husky": "^7.0.1",
     "lint-staged": "^11.1.1",
     "prettier": "^2.3.2",
     "typechain": "^5.1.2",
@@ -81,7 +81,7 @@
   },
   "lint-staged": {
     "./**/*.{ts,tsx}": [
-      "eslint --ignore-path .gitignore --max-warnings=0"
+      "eslint --ignore-path .gitignore --max-warnings=20"
     ],
     "./**/*.{ts,tsx,css,md,json}": [
       "prettier --write"

@@ -1,6 +1,6 @@
 import { FC, useMemo } from 'react';
-import { ProviderWeb3 } from '@lido-sdk/web3-react';
 import { backendRPC } from 'config';
+import { ProviderWeb3 } from '@lido-sdk/web3-react';
 
 export type EnvConfig = {
   defaultChain: string;
