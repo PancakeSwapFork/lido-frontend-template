@@ -14,16 +14,11 @@ import Wallet from 'components/wallet';
 import Section from 'components/section';
 import Layout from 'components/layout';
 // import Faq from 'components/faq';
-import { FAQItem } from 'lib/faqList';
 import styled from 'styled-components';
 import { BigNumber, ethers } from 'ethers';
 import { useWeb3React } from '@web3-react/core';
 import MaxButton from '../components/maxButton';
 import WalletConnect from '../components/walletConnect';
-
-interface HomeProps {
-  faqList: FAQItem[];
-}
 
 const StyledConnectWalletButton = styled(WalletConnect)`
   width: 100%;
@@ -36,7 +31,7 @@ const AprPercent = styled.span`
   color: rgb(97, 183, 95);
 `;
 
-const Home: FC<HomeProps> = () => {
+const Home: FC = () => {
   const [amount, setAmount] = useState('');
   const [maxValue, setMaxValue] = useState<string>('0');
   const { library, account } = useWeb3React();
