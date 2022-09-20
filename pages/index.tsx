@@ -150,7 +150,6 @@ const Home: FC<HomeProps> = ({ faqList }) => {
 export default Home;
 
 const faqList = getFaqList([
-  'lido',
   'how-lido-work',
   'what-is-liquid-staking',
   'lido-secure',
