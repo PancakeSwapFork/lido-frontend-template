@@ -1,5 +1,5 @@
 import { FC, FormEventHandler, useEffect, useMemo, useState } from 'react';
-// import { GetServerSideProps } from 'next';
+import { GetServerSideProps } from 'next';
 import {
   Block,
   Link,
@@ -13,12 +13,17 @@ import Head from 'next/head';
 import Wallet from 'components/wallet';
 import Section from 'components/section';
 import Layout from 'components/layout';
-// import Faq from 'components/faq';
+import Faq from 'components/faq';
+import { FAQItem, getFaqList } from 'lib/faqList';
 import styled from 'styled-components';
 import { BigNumber, ethers } from 'ethers';
 import { useWeb3React } from '@web3-react/core';
 import MaxButton from '../components/maxButton';
 import WalletConnect from '../components/walletConnect';
+
+interface HomeProps {
+  faqList: FAQItem[];
+}
 
 const StyledConnectWalletButton = styled(WalletConnect)`
   width: 100%;
@@ -31,7 +36,7 @@ const AprPercent = styled.span`
   color: rgb(97, 183, 95);
 `;
 
-const Home: FC = () => {
+const Home: FC<HomeProps> = ({ faqList }) => {
   const [amount, setAmount] = useState('');
   const [maxValue, setMaxValue] = useState<string>('0');
   const { library, account } = useWeb3React();
@@ -137,22 +142,23 @@ const Home: FC = () => {
           </DataTable>
         </Block>
       </Section>
-      {/*<Faq faqList={faqList} />*/}
+      <Faq faqList={faqList} />
     </Layout>
   );
 };
 
 export default Home;
 
-// const faqList = getFaqList([
-//   'how-lido-work',
-//   'what-is-liquid-staking',
-//   'lido-secure',
-//   'difference-between',
-//   'risk',
-//   'fee',
-// ]);
+const faqList = getFaqList([
+  'lido',
+  'how-lido-work',
+  'what-is-liquid-staking',
+  'lido-secure',
+  'difference-between',
+  'risk',
+  'fee',
+]);
 
-// export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
-//   return { props: { faqList: await faqList } };
-// };
+export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
+  return { props: { faqList: await faqList } };
+};
